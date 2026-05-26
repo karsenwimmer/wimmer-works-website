@@ -1,0 +1,36 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  color: #111111;
+  background: #fbfaf7;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background:
+    linear-gradient(180deg, rgba(243, 239, 231, 0.42) 0%, rgba(251, 250, 247, 0) 26rem),
+    #fbfaf7;
+  color: #111111;
+  font-family: Inter, "Avenir Next", "Helvetica Neue", Arial, sans-serif;
+}
+
+::selection {
+  background: rgba(200, 138, 5, 0.24);
+}
+
+input,
+select,
+textarea,
+button {
+  font: inherit;
+}
