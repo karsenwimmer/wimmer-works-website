@@ -65,13 +65,13 @@ const woodServices: WoodService[] = [
     copy: "Weathered decks, fences, pergolas, gazebos, stairs, railings, gates, and exterior wood that needs to be refreshed.",
     beforeAfter: [
       {
-        src: "/photos/weathered-deck-optimized.jpg",
-        alt: "Weathered wood deck before refinishing",
+        src: "/photos/wood-refinishing-before.jpg",
+        alt: "Weathered backyard deck before wood refinishing",
         label: "Before",
       },
       {
-        src: "/photos/refinished-deck-optimized.jpg",
-        alt: "Clean prepared wood deck after washing and sanding",
+        src: "/photos/wood-refinishing-after.jpg",
+        alt: "Backyard deck after washing and sanding",
         label: "After",
       },
     ],
