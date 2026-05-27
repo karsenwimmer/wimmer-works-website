@@ -90,47 +90,46 @@ export default function Home() {
     <main className="min-h-screen bg-linen text-ink">
       <Header />
 
-      <section className="mx-auto grid max-w-7xl gap-14 px-6 pb-20 pt-14 sm:px-10 lg:grid-cols-[1.05fr_0.95fr] lg:px-12 lg:pb-32 lg:pt-20">
-        <div className="flex flex-col justify-center">
-          <div className="mb-8 h-px w-24 bg-gold" />
-          <p className="mb-5 text-sm font-semibold uppercase tracking-[0.24em] text-gold">
-            Premium local paint and stain work
-          </p>
-          <h1 className="max-w-4xl font-serif text-4xl leading-[1.08] text-ink sm:text-5xl lg:text-6xl">
-            Professional Painting & Staining in Oakville, Burlington &
-            Surrounding Areas
-          </h1>
-          <p className="mt-8 max-w-2xl text-lg leading-8 text-charcoal/82">
-            Refined interior repainting, durable exterior finishes, and careful
-            wood staining with clear communication from first photo to final
-            cleanup.
-          </p>
-          <div className="mt-10 flex flex-col gap-4 sm:flex-row">
-            <a
-              href="#quote"
-              className="inline-flex min-h-12 items-center justify-center border border-gold bg-gold px-7 py-3 text-sm font-semibold uppercase tracking-[0.18em] text-white transition hover:border-ink hover:bg-ink"
-            >
-              Request Quote
-            </a>
-            <a
-              href="#services"
-              className="inline-flex min-h-12 items-center justify-center border border-black/20 px-7 py-3 text-sm font-semibold uppercase tracking-[0.18em] text-ink transition hover:border-gold hover:text-gold"
-            >
-              View Services
-            </a>
-          </div>
-        </div>
+      <section className="relative isolate flex min-h-[calc(100svh-3.5rem)] items-center overflow-hidden px-6 pb-20 pt-36 sm:px-10 sm:pt-40 lg:min-h-[680px] lg:px-12 lg:pb-24">
+        <Image
+          src="/photos/hero-paint-wall.png"
+          alt="Interior wall mid-paint with ladder, paint buckets, and drop cloth"
+          fill
+          priority
+          sizes="100vw"
+          className="absolute inset-0 -z-20 object-cover object-center"
+        />
+        <div className="absolute inset-0 -z-10 bg-gradient-to-r from-linen/95 via-linen/70 to-linen/10" />
 
-        <div className="hidden items-center justify-center lg:flex lg:justify-end">
-          <div className="relative aspect-square w-full max-w-[34rem]">
-            <Image
-              src="/brand/emblem-transparent-trimmed.png"
-              alt="Wimmer Works Paint & Stain emblem"
-              fill
-              priority
-              sizes="(min-width: 1024px) 34rem, 80vw"
-              className="object-contain p-10 sm:p-14"
-            />
+        <div className="mx-auto w-full max-w-7xl">
+          <div className="max-w-2xl">
+            <div className="mb-8 h-px w-24 bg-gold" />
+            <p className="mb-5 text-sm font-semibold uppercase tracking-[0.24em] text-gold">
+              Premium local paint and stain work
+            </p>
+            <h1 className="font-serif text-4xl leading-[1.08] text-ink sm:text-5xl lg:text-6xl">
+              Professional Painting & Staining in Oakville, Burlington &
+              Surrounding Areas
+            </h1>
+            <p className="mt-8 max-w-2xl text-lg leading-8 text-charcoal/82">
+              Refined interior repainting, durable exterior finishes, and careful
+              wood staining with clear communication from first photo to final
+              cleanup.
+            </p>
+            <div className="mt-10 flex flex-col gap-4 sm:flex-row">
+              <a
+                href="#quote"
+                className="inline-flex min-h-12 items-center justify-center border border-gold bg-gold px-7 py-3 text-sm font-semibold uppercase tracking-[0.18em] text-white transition hover:border-ink hover:bg-ink"
+              >
+                Request Quote
+              </a>
+              <a
+                href="#services"
+                className="inline-flex min-h-12 items-center justify-center border border-black/20 px-7 py-3 text-sm font-semibold uppercase tracking-[0.18em] text-ink transition hover:border-gold hover:text-gold"
+              >
+                View Services
+              </a>
+            </div>
           </div>
         </div>
       </section>
@@ -216,7 +215,7 @@ export default function Home() {
 
 function Header() {
   return (
-    <header className="sticky top-0 z-20 border-b border-black/10 bg-linen/92 px-6 py-3 backdrop-blur sm:px-10 lg:px-12">
+    <header className="sticky top-0 z-20 -mb-28 border-b border-black/10 bg-linen/70 px-6 py-3 backdrop-blur-md sm:px-10 md:-mb-[4.625rem] lg:px-12">
       <div className="mx-auto flex max-w-7xl flex-col gap-3 md:flex-row md:items-center md:justify-between md:gap-6">
         <a href="#" aria-label="Wimmer Works Paint & Stain home" className="block shrink-0">
           <Image
@@ -316,14 +315,14 @@ function WoodServiceFeature({
           className="mt-6 aspect-[4/3]"
         />
       ) : (
-        <div className="mt-6 grid grid-cols-2 gap-3 sm:gap-5">
+        <div className="mt-6 grid grid-cols-1 gap-4 sm:gap-5">
           {service.beforeAfter.map((image) => (
             <ServiceImage
               key={image.label}
               src={image.src}
               alt={image.alt}
               label={image.label}
-              className="aspect-[3/4] sm:aspect-[4/3]"
+              className="aspect-[4/3]"
             />
           ))}
         </div>
