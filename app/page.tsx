@@ -21,10 +21,13 @@ type WoodService =
       image: ServicePhoto;
     }
   | {
-      kind: "beforeAfter";
+      kind: "splitBeforeAfter";
       title: string;
       copy: string;
-      beforeAfter: ServicePhoto[];
+      image: {
+        src: string;
+        alt: string;
+      };
     };
 
 const paintingServices: PaintingService[] = [
@@ -54,27 +57,19 @@ const woodServices: WoodService[] = [
     title: "New Wood Staining",
     copy: "New decks, fences, pergolas, gazebos, stairs, railings, gates, and exterior woodwork.",
     image: {
-      src: "/photos/stained-deck-optimized.jpg",
-      alt: "Freshly stained backyard deck",
+      src: "/photos/new-wood-red-stain.jpg",
+      alt: "Freshly stained red-toned backyard deck",
       label: "New wood staining",
     },
   },
   {
-    kind: "beforeAfter",
+    kind: "splitBeforeAfter",
     title: "Wood Refinishing",
     copy: "Weathered decks, fences, pergolas, gazebos, stairs, railings, gates, and exterior wood that needs to be refreshed.",
-    beforeAfter: [
-      {
-        src: "/photos/wood-refinishing-before.jpg",
-        alt: "Weathered backyard deck before wood refinishing",
-        label: "Before",
-      },
-      {
-        src: "/photos/wood-refinishing-after.jpg",
-        alt: "Backyard deck after washing and sanding",
-        label: "After",
-      },
-    ],
+    image: {
+      src: "/photos/wood-refinishing-split.jpg",
+      alt: "Backyard deck before and after wood refinishing",
+    },
   },
 ];
 
@@ -315,17 +310,11 @@ function WoodServiceFeature({
           className="mt-6 aspect-[4/3]"
         />
       ) : (
-        <div className="mt-6 grid grid-cols-1 gap-4 sm:gap-5">
-          {service.beforeAfter.map((image) => (
-            <ServiceImage
-              key={image.label}
-              src={image.src}
-              alt={image.alt}
-              label={image.label}
-              className="aspect-[4/3]"
-            />
-          ))}
-        </div>
+        <BeforeAfterImage
+          src={service.image.src}
+          alt={service.image.alt}
+          className="mt-6 aspect-[1729/910]"
+        />
       )}
     </article>
   );
@@ -354,6 +343,37 @@ function ServiceImage({
       <figcaption className="absolute left-3 top-3 bg-linen px-3 py-2 text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-ink sm:left-4 sm:top-4 sm:px-4 sm:text-xs sm:tracking-[0.18em]">
         {label}
       </figcaption>
+    </figure>
+  );
+}
+
+function BeforeAfterImage({
+  src,
+  alt,
+  className,
+}: {
+  src: string;
+  alt: string;
+  className: string;
+}) {
+  const labelClassName =
+    "absolute top-3 bg-linen px-3 py-2 text-[0.68rem] font-semibold uppercase tracking-[0.16em] text-ink sm:top-4 sm:px-4 sm:text-xs sm:tracking-[0.18em]";
+
+  return (
+    <figure className={`relative overflow-hidden bg-white shadow-soft ${className}`}>
+      <Image
+        src={src}
+        alt={alt}
+        fill
+        sizes="(min-width: 1024px) 42vw, 100vw"
+        className="object-cover"
+      />
+      <span className={`${labelClassName} left-3 sm:left-4`}>
+        Before
+      </span>
+      <span className={`${labelClassName} right-3 sm:right-4`}>
+        After
+      </span>
     </figure>
   );
 }
