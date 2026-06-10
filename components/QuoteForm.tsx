@@ -12,7 +12,7 @@ const projectTypes = [
 
 type FormState = "idle" | "submitting" | "success" | "error";
 
-export function QuoteForm() {
+export function QuoteForm({ source }: { source?: string }) {
   const [status, setStatus] = useState<FormState>("idle");
   const [message, setMessage] = useState("");
 
@@ -55,6 +55,8 @@ export function QuoteForm() {
 
   return (
     <form onSubmit={handleSubmit} className="space-y-5">
+      {source ? <input type="hidden" name="source" value={source} /> : null}
+
       <div className="grid gap-5 sm:grid-cols-2">
         <Field label="Name" name="name" autoComplete="name" required />
         <Field label="Phone" name="phone" type="tel" autoComplete="tel" required />

@@ -8,6 +8,17 @@ type QuotePayload = {
   projectType?: string;
   city?: string;
   details?: string;
+  source?: string;
+};
+
+type Quote = {
+  name: string;
+  phone: string;
+  email: string;
+  projectType: string;
+  city: string;
+  details: string;
+  source: string;
 };
 
 const requiredFields: Array<keyof QuotePayload> = [
@@ -59,6 +70,7 @@ export async function POST(request: Request) {
     projectType: clean(payload.projectType),
     city: clean(payload.city),
     details: clean(payload.details),
+    source: clean(payload.source),
   };
 
   try {
@@ -97,8 +109,8 @@ function escapeHtml(value: string) {
     .replaceAll("'", "&#039;");
 }
 
-function quoteEmailHtml(quote: Required<QuotePayload>) {
-  const rows = [
+function quoteEmailHtml(quote: Quote) {
+  const rows: Array<[string, string]> = [
     ["Name", quote.name],
     ["Phone", quote.phone],
     ["Email", quote.email],
@@ -106,6 +118,10 @@ function quoteEmailHtml(quote: Required<QuotePayload>) {
     ["City / area", quote.city],
     ["Project details", quote.details],
   ];
+
+  if (quote.source) {
+    rows.unshift(["Lead source", quote.source]);
+  }
 
   return `
     <div style="font-family: Arial, sans-serif; color: #111111; line-height: 1.5;">
@@ -134,10 +150,11 @@ function quoteEmailHtml(quote: Required<QuotePayload>) {
   `;
 }
 
-function quoteEmailText(quote: Required<QuotePayload>) {
+function quoteEmailText(quote: Quote) {
   return [
     "New quote request",
     "",
+    ...(quote.source ? [`Lead source: ${quote.source}`] : []),
     `Name: ${quote.name}`,
     `Phone: ${quote.phone}`,
     `Email: ${quote.email}`,
